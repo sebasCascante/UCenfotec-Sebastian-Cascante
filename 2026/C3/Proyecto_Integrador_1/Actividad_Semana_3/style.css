@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f2933;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.login-card {
+    background-color: #ffffff;
+    width: 360px;
+    padding: 32px 28px;
+    border-radius: 8px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.login-card h1 {
+    margin: 0px 0px 24px 0px;
+    font-size: 22px;
+    text-align: center;
+    color: #1f2933;
+}
+
+fieldset {
+    border: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+legend {
+    padding: 0px;
+    margin-bottom: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333344;
+}
+
+.field {
+    margin-bottom: 16px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #333344;
+}
+
+.field input {
+    width: 304px;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #c3c9d1;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.field input:focus {
+    border-color: #3b82f6;
+}
+
+.field input.invalid {
+    border-color: #d9534f;
+}
+
+.error-message {
+    display: block;
+    min-height: 18px;
+    margin-top: 4px;
+    font-size: 13px;
+    color: #d9534f;
+}
+
+.password-hint {
+    margin: 0px 0px 20px 0px;
+    padding-left: 18px;
+    font-size: 12px;
+    color: #6B7280;
+    line-height: 18px;
+}
+
+button[type="submit"] {
+    width: 304px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #3b82f6;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+.form-success {
+    margin: 14px 0px 0px 0px;
+    min-height: 18px;
+    font-size: 14px;
+    text-align: center;
+    color: #2e7d32;
+}

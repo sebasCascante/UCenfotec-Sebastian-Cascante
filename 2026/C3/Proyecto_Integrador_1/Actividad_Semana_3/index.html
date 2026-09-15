@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="login-card">
+        <header>
+            <h1>Iniciar sesión</h1>
+        </header>
+
+        <form id="loginForm" novalidate>
+            <fieldset>
+                <legend>Credenciales de acceso</legend>
+
+                <div class="field">
+                    <label for="usuario">Usuario</label>
+                    <input type="text" id="usuario" name="usuario" autocomplete="username"
+                        aria-describedby="errorUsuario">
+                    <span class="error-message" id="errorUsuario" role="alert"></span>
+                </div>
+
+                <div class="field">
+                    <label for="contrasena">Contraseña</label>
+                    <input type="password" id="contrasena" name="contrasena" autocomplete="current-password"
+                        aria-describedby="errorContrasena requisitosContrasena">
+                    <span class="error-message" id="errorContrasena" role="alert"></span>
+                </div>
+
+                <ul class="password-hint" id="requisitosContrasena">
+                    <li>De 8 a 15 caracteres</li>
+                    <li>Al menos una mayúscula y una minúscula</li>
+                    <li>Al menos un número</li>
+                    <li>Al menos un carácter especial (% ^ &amp; * /)</li>
+                </ul>
+            </fieldset>
+
+            <button type="submit">Entrar</button>
+
+            <output class="form-success" id="formSuccess" for="usuario contrasena"></output>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
