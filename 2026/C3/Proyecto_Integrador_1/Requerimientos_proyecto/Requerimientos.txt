@@ -1,0 +1,113 @@
+Requerimientos del software
+
+Departamento de Desarrollo Curricular y Docente de la U
+
+Se encarga de presentar al CONESUP cualquier actualizacion de las carreras
+Se encarga de presental al CONESUP las inscripciones de nuevas carreras
+Genera las herramientas y capacitaciones para los profesores que brindan clases
+Control y estandarizacion de los documentos que permiten la construccion de la informacion de las insignias que se otorgan a los estudiantes que participan en los cursos libres y los cuatrimestrales
+Evaluaciones docentes
+
+tiene relacion con rectoria para los procesos de acreditacion y verificacion de los cursos que se generan en la universidad
+tiene relacion con vicerectoria
+
+el proceso de creacion de cursos lo hacen los directores de carrera
+
+se llena una plantilla y se registra en un excel, la informacion se registra con un google docs
+
+
+Objetivos del sistema
+- ayudar al proceso de registro de los cursos que crea la universidad (tener un catalogo con la informacion basica de todos ellos, la cual se necesita para los demas procesos que se nutren con ese excel)
+
+Usuarios
+
+Registro e Ingreso:
+ingresar con google
+Usuario(correo electronico) y clave
+la clave debe tener:
+- entre 8 y 15 caracteres
+- al menos un numero
+- al menos un caracter alfanumerico
+- al menos una mayuscula y una minuscula
+(debe estar encriptada en la base de datos)
+
+Roles:
+- Rectoria
+	- Ver reportes con la lista de los cursos
+
+- Desarrollo Curricular
+	- Verificar informacion registrada correctamente 
+		
+- Direccion de escuela
+	- registrar y ver cursos unicamente para su carrera
+
+- Viceresctoria
+	- Ver reportes con la lista de los cursos
+
+- Admin
+	- admin (todo)
+	- registra los usuarios y les asigna el rol
+	- cada usuario tiene:
+		- nombre
+		- primer apellido
+		- segundo apellido
+		- cedula
+		- correo electronico
+		- telefono celular
+		- correo electronico personal 
+		- fecha de nacimiento (debe calcular la edad apartir de la fecha) - me parece innecesario? o ese valor se debe usar en algun otro lugar del sistema
+		- sexo (femenino, masculino, prefiero no decir)
+		- imagen (avatar o foto opcional para el usuario) - la lista de avatar esta predifinida o cuales son los avatares permitidos?  
+	/ver si se puede jalar la informacion del registro de la cuenta de google - personal o universidad?
+
+Paleta de colores es la de la universidad
+Debe poderse traducir en ingles y en espanol (manualmente y espanol es el default)
+
+Proceso de registro de cursos
+- roles admitidos:
+	- admin, desarrollo curricular y direccion de carrera
+
+- proceso actual:
+	- el director de escuela llena un docs con informacion que se guarda en el excel
+	- desarrollo curricular revisa la informacion subida (la creacion del codigo de cursos tiene cierta logica) para evitar duplicados o codigos incorrectos
+	- una vez desarrollo curricular aprueba un curso ya no se puede eliminar, solo dar de baja
+
+se trabaja bajo un esquema de carreras: - quien registra las escuelas?
+	- una carrera administra ciertos cursos
+	- una carrera tiene un director
+
+Catalogos (lista de valores para categorizar informacion):
+	- catalogo de escuelas (cada escuela tiene un codigo, un nombre y un director(todos los campos requeridos))
+	- catalogo de carreras (cada carrera tiene un codigo, un nombre y la escuela a la que pertenece(todos los campos requeridos))
+	- estado de los cursos
+	- Area Sefia?: un texto con codigo(numerico), descripcion(opcional para el usuario) y nombre
+		- debe ser editable - por quien?
+		- debe poderse cargar por un csv
+		- debe poderse ingresar manual
+	- Tematicas: un codigo(alfanumerico), descripcion(opcional para el usuario) y nombre
+		- lo mismo que el area sefia
+	- Metodologia de aprendizaje (cada metodologia de aprendizaje va a tener un nombre, una descripcion y un codigo numerico(id)):
+		- se debe poder usar el api de gemini para sugerencias de redaccion a la hora del registro
+		- nombre en power accounts (maximo de 40 caracteres) |esto es parte de los cursos no de metodologia|
+		- un campo que sea la cantidad de caracteres del nombre |esto es parte de los cursos no de metologia|
+	- Casas Certificadoras(codigo(num) y nombre):
+		- Ingresar manualmente
+		- ingresar con excel, csv
+	- cursos (escuela asociada, codigo, nombre, e-commerce(si =true debe tener una fecha por la cual se abre), estado, la fecha de la ultima modificacion, el area de sefia, la tematica, numero de creditos, numero de horas de clase, horas extraclase, total de horas, modalidad(virtual, presencial, hibrida), requisitos indispensables, requisitos deseables, la moneda, programa al que pertenece(si aplica a cual pertenece), descripcion corta (250 caracteres mx, que se pueda ingresar con api de gemini sugerencia), campo para la competencia, meta descripcion(150 carac mx, tambien sugerencia ia), capacidades especificas, descripcion larga(lo mismo que la normal), nivel de complejidad, perfil de ingreso, perfil de salida, palabras clave, casa certificadora, certificacion, metadata, fecha de modificacion de la metadata)
+		- campos basicos minimos para dashboard(escuela, codigo, nombre) - la notificacion a desarrollo curricluar se manda cuando todos los campos esten completos (con los tres campos obligatorios llenos se puede guardar un borrador)
+	extra catalogos:
+		- estados (en desarrollo, en produccion, inactivo)
+		- la moneda debe ser colones y dolares
+		- cada curso tiene nivel de complejidad (basico, intermedio, avanzado, nivel variable, certificacion) cada uno con nombre, descripcion y codigo(num) 
+
+Cuando se registra un curso se manda una notificacion a desarrollo curricular (correo electronico y notificacion del sistema)
+a desarrollo curricular se le va a mostrar un dashboard con los cursos y los cursos que estan pendientes de revisar (que deben aprobar el resultado se manda al director de carrera(si se aprueba o no, si se aprueba se manda a vicerectoria tambien))
+
+
+Notas:
+- los cursos se pueden desactivar mas no eliminar (-1 en base de datos)
+- tipo de cifrado a eleccion pero debe venir en el documento de diseno
+- un curso puede tener certificaciones asociadas (pueden ser un catalogo o lista quemada a decision de grupo)
+- el alcance del primer avance es guardando todo en local storage, sin guardar en base de datos todavia
+- si se puede hacer el sistema como clon visual del autoservicio es god
+- el alcance minimo del primer avance es que haya registro, listado, modificacion e inicio de sesion

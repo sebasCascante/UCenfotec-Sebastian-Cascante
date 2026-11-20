@@ -1,0 +1,80 @@
+/* layout.css: ubicación de las grandes zonas de la página */
+
+/* 1. Encabezado con la marca y el menú */
+.encabezado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--principal-oscuro);
+}
+
+.marca {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--blanco);
+  font-size: 20px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu a {
+  color: var(--blanco);
+}
+
+.menu a[aria-current="page"] {
+  font-weight: 700;
+}
+
+/* 2. Contenedor: limita el ancho del contenido y lo centra */
+.contenedor {
+  width: min(1000px, 100% - 32px);
+  margin: 32px auto 48px;
+}
+
+.angosto {
+  width: min(460px, 100% - 32px);
+}
+
+/* 3. Portada de la página de inicio */
+.portada {
+  padding: 48px 0;
+  background: var(--principal-claro);
+}
+
+.portada .contenedor {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* 4. Cuadrículas: las columnas se acomodan solas al ancho */
+.caracteristicas,
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 5. Pie de página */
+.pie {
+  padding: 16px 24px;
+  border-top: 1px solid var(--borde);
+  color: var(--suave);
+  text-align: center;
+}

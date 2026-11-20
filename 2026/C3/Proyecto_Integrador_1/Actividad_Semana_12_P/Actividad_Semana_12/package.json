@@ -1,0 +1,16 @@
+{
+ "name": "biblioteca-frontend",
+ "version": "1.0.0",
+ "description": "Frontend de la Biblioteca",
+ "main": "server.js",
+ "scripts": {
+  "start": "node server.js",
+  "dev": "node --watch server.js"
+ },
+ "license": "ISC",
+ "dependencies": {
+  "express": "^5.3.0"
+ },
+ "keywords": [],
+ "author": ""
+}

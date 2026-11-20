@@ -1,0 +1,61 @@
+/* base.css: colores, reinicio y estilos generales de todo el sitio */
+
+/* 1. Variables: los colores se definen una sola vez */
+:root {
+  --tinta: #1f2a30;
+  --suave: #4f5f67;
+  --fondo: #f3f6f4;
+  --blanco: #ffffff;
+  --borde: #c9d6cf;
+  --principal: #116149;
+  --principal-oscuro: #0b4635;
+  --principal-claro: #e0f0ea;
+  --peligro: #b3261e;
+  --peligro-claro: #f7e7e5;
+  --foco: #b7791f;
+}
+
+/* 2. Reinicio: el ancho incluye el relleno y el borde */
+* {
+  box-sizing: border-box;
+}
+
+/* 3. Página */
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* 4. Textos */
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h1 { margin: 0 0 8px; font-size: 32px; }
+h2 { margin: 32px 0 12px; font-size: 24px; }
+h3 { margin: 0 0 4px; font-size: 18px; }
+
+a { color: var(--principal); }
+
+img { max-width: 100%; }
+
+/* 5. Foco visible para quien usa el teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+/* hidden siempre oculta, aunque otra regla cambie el display. */
+[hidden] {
+  display: none !important;
+}

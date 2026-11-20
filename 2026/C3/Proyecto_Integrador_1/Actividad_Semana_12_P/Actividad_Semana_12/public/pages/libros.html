@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca | Catálogo</title>
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/componentes.css">
+  <script src="../js/api.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+  <script src="../js/libros.js" defer></script>
+</head>
+<body>
+  <header class="encabezado">
+    <a class="marca" href="../index.html">
+      <img src="../img/logo.svg" alt="" width="36" height="36">
+      Biblioteca
+    </a>
+    <nav aria-label="Principal">
+      <ul class="menu">
+        <li><a href="libros.html" aria-current="page">Catálogo</a></li>
+        <li><a href="autores.html">Autores</a></li>
+        <li data-sin-sesion><a href="login.html">Iniciar sesión</a></li>
+        <li data-sin-sesion><a href="registro.html">Crear cuenta</a></li>
+        <li data-con-sesion hidden><a href="perfil.html" id="enlace-perfil">Mi perfil</a></li>
+        <li data-con-sesion hidden>
+          <button type="button" class="boton-enlace" id="boton-salir">Cerrar sesión</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenedor">
+    <h1>Catálogo de libros</h1>
+    <p class="destacado">Los datos vienen de MongoDB por medio de la API.</p>
+
+    <h2 id="titulo-lista">Lista de libros</h2>
+
+    <div class="filtros">
+      <label for="filtro-genero">Filtrar por género</label>
+      <select id="filtro-genero">
+        <option value="">Todos</option>
+      </select>
+    </div>
+
+    <p id="estado" class="estado" role="status">Cargando libros…</p>
+    <section id="lista-libros" class="tarjetas"
+             aria-labelledby="titulo-lista"></section>
+
+    <h2 id="titulo-formulario">Registrar un libro</h2>
+    <form id="form-libro" class="formulario">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" required>
+
+      <label for="autor">Autor</label>
+      <input type="text" id="autor" required>
+
+      <label for="codigo">Código</label>
+      <input type="text" id="codigo" required>
+
+      <label for="anio">Año</label>
+      <input type="number" id="anio" min="1000" required>
+
+      <label for="genero">Género</label>
+      <input type="text" id="genero" required>
+
+      <label class="casilla">
+        <input type="checkbox" id="disponible" checked>
+        Disponible
+      </label>
+
+      <div class="acciones">
+        <button type="submit" id="boton-guardar">Registrar libro</button>
+        <button type="button" id="boton-cancelar" class="secundario" hidden>
+          Cancelar
+        </button>
+      </div>
+    </form>
+    <p id="mensaje" class="mensaje" role="status"></p>
+  </main>
+
+  <footer class="pie">
+    <p>Biblioteca · Proyecto del curso Capstone</p>
+  </footer>
+</body>
+</html>

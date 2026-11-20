@@ -1,0 +1,194 @@
+Requerimientos del Software
+Sistema de Registro de Cursos — Departamento de Desarrollo Curricular y Docente
+
+
+
+Contexto y funciones del departamento
+
+El Departamento de Desarrollo Curricular y Docente de la universidad se encarga de:
+
+- Presentar al CONESUP cualquier actualización de las carreras.
+- Presentar al CONESUP las inscripciones de nuevas carreras.
+- Generar herramientas y capacitaciones para los profesores que brindan clases.
+- Controlar y estandarizar los documentos que permiten la construcción de la información de las insignias que se otorgan a los estudiantes que participan en cursos libres y cuatrimestrales.
+- Evaluaciones docentes.
+
+Relaciones con otras instancias:
+- Rectoría: procesos de acreditación y verificación de los cursos generados en la universidad.
+- Vicerrectoría: relación de reportes/supervisión.
+
+Proceso actual (manual):
+- El proceso de creación de cursos lo realizan los directores de carrera.
+- Se llena una plantilla y se registra la información en un Excel.
+- La información se registra mediante Google Docs.
+
+
+
+Objetivo del sistema
+
+Ayudar al proceso de registro de los cursos que crea la universidad, generando un catálogo con la información básica de todos los cursos, la cual alimenta los demás procesos que hoy dependen del Excel.
+
+
+
+Usuarios
+
+Registro e ingreso
+- Ingreso con cuenta de Google.
+- Ingreso con usuario (correo electrónico) y clave.
+- Política de contraseña:
+  - Entre 8 y 15 caracteres.
+  - Al menos un número.
+  - Al menos un carácter alfanumérico.
+  - Al menos una mayúscula y una minúscula.
+  - Debe estar encriptada en la base de datos (tipo de cifrado a elección del equipo, pero debe documentarse en el documento de diseño).
+
+Roles
+
+- Rectoría: Ver reportes con la lista de los cursos.
+- Desarrollo Curricular: Verificar que la información registrada esté correcta.
+- Dirección de Escuela: Registrar y ver cursos únicamente de su carrera.
+- Vicerrectoría: Ver reportes con la lista de los cursos.
+- Admin: Control total del sistema. Registra usuarios y asigna roles.
+
+Datos de usuario (gestionados por Admin)
+- Nombre
+- Primer apellido
+- Segundo apellido
+- Cédula
+- Correo electrónico (institucional)
+- Teléfono celular
+- Correo electrónico personal
+- Fecha de nacimiento (el sistema calcula la edad a partir de esta fecha)
+- Sexo (femenino, masculino, prefiero no decir)
+- Imagen (avatar o foto, opcional)
+
+Requisitos generales de interfaz
+- Paleta de colores institucional de la universidad.
+- Sistema traducible a inglés y español (traducción manual, español por defecto).
+
+
+
+Proceso de registro de cursos
+
+Roles admitidos para registrar cursos: Admin, Desarrollo Curricular, Dirección de Carrera.
+
+Flujo del proceso:
+1. El director de escuela registra la información del curso (hoy: llenando un Docs que alimenta el Excel).
+2. Desarrollo Curricular revisa la información subida (existe cierta lógica para la creación del código de curso) para evitar duplicados o códigos incorrectos.
+3. Una vez que Desarrollo Curricular aprueba un curso, ya no se puede eliminar, solo dar de baja.
+4. El resultado de la revisión (aprobado o no) se notifica al director de carrera.
+5. Si se aprueba, también se notifica a Vicerrectoría.
+
+Notificaciones del sistema:
+- Al registrar un curso se envía notificación a Desarrollo Curricular (correo electrónico + notificación del sistema).
+- Desarrollo Curricular cuenta con un dashboard que muestra los cursos y los que están pendientes de revisión.
+
+Reglas de negocio:
+- Un curso puede desactivarse, pero no eliminarse (se maneja como -1 en base de datos).
+- Con los tres campos obligatorios básicos completos (escuela, código, nombre) se puede guardar un borrador.
+- La notificación a Desarrollo Curricular se envía únicamente cuando todos los campos del curso están completos.
+
+Esquema de carreras:
+- Una carrera administra ciertos cursos.
+- Una carrera tiene un director.
+
+
+
+Catálogos (listas de valores)
+
+Escuelas
+- Código, nombre, director (todos los campos requeridos).
+
+Carreras
+- Código, nombre, escuela a la que pertenece (todos los campos requeridos).
+
+Estado de los cursos
+- En desarrollo, en producción, inactivo.
+
+Área SEFIA
+- Código (numérico), descripción (opcional), nombre.
+- Editable.
+- Debe poder cargarse por CSV o ingresarse manualmente.
+
+Temáticas
+- Código (alfanumérico), descripción (opcional), nombre.
+- Editable.
+- Debe poder cargarse por CSV o ingresarse manualmente.
+
+Metodología de aprendizaje
+- Nombre, descripción, código numérico (id).
+- Debe poder usarse la API de Gemini para sugerencias de redacción al registrar.
+
+Casas Certificadoras
+- Código (numérico), nombre.
+- Ingreso manual o carga por Excel/CSV.
+
+Nivel de complejidad (catálogo)
+- Básico, intermedio, avanzado, nivel variable, certificación.
+- Cada uno con nombre, descripción y código (numérico).
+
+Moneda
+- Colones y dólares.
+
+
+
+Entidad: Cursos
+
+Campos:
+- Escuela asociada
+- Código
+- Nombre
+- Nombre en Power Accounts (máximo 40 caracteres)
+- Cantidad de caracteres del nombre (campo calculado)
+- E-commerce (booleano; si es "true", requiere fecha de apertura)
+- Estado
+- Fecha de última modificación
+- Área SEFIA
+- Temática
+- Número de créditos
+- Número de horas de clase
+- Horas extraclase
+- Total de horas
+- Modalidad (virtual, presencial, híbrida)
+- Requisitos indispensables
+- Requisitos deseables
+- Moneda
+- Programa al que pertenece (si aplica)
+- Descripción corta (máx. 250 caracteres; sugerencia vía API de Gemini)
+- Campo de competencia
+- Meta descripción (máx. 150 caracteres; sugerencia vía API de Gemini)
+- Capacidades específicas
+- Descripción larga (mismas condiciones que la descripción corta)
+- Nivel de complejidad
+- Perfil de ingreso
+- Perfil de salida
+- Palabras clave
+- Casa certificadora
+- Certificación
+- Metadata
+- Fecha de modificación de la metadata
+
+Campos básicos mínimos para guardar un borrador (dashboard): escuela, código, nombre.
+
+
+
+Alcance del primer avance
+
+- Registro, listado, modificación e inicio de sesión de cursos.
+- Todo se guarda en local storage (sin base de datos todavía).
+- Deseable (por mi): que el sistema sea un clon visual del "autoservicio".
+
+
+Fecha de nacimiento del usuario - forma parte de la informacion solicitada
+Avatares de usuario: la definimmos nosotros
+Inicio de sesión con Google: si se jala información desde la cuenta de Google de la U
+Registro de escuelas: admin
+Certificaciones asociadas a un curso: deben manejarse como un catálogo propio o como una lista fija (quemada) en el sistema - queda como decisión de equipo.
+Campos "Nombre en Power Accounts" y "cantidad de caracteres del nombre": se confirma que corresponden a la entidad Curso y no a la entidad Metodología de aprendizaje
+Tipo de cifrado de contraseñas: queda a elección del equipo de desarrollo
+
+
+Notas
+- Los cursos se pueden desactivar, pero no eliminar (bandera "-1" en base de datos).
+- El tipo de cifrado queda a elección del equipo, pero debe documentarse en el documento de diseño.
+- El alcance del primer avance no incluye base de datos (local storage únicamente).

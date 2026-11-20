@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca | Inicio</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/componentes.css">
+  <script src="js/api.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/inicio.js" defer></script>
+</head>
+<body>
+  <header class="encabezado">
+    <a class="marca" href="index.html">
+      <img src="img/logo.svg" alt="" width="36" height="36">
+      Biblioteca
+    </a>
+    <nav aria-label="Principal">
+      <ul class="menu">
+        <li><a href="pages/libros.html">Catálogo</a></li>
+        <li><a href="pages/autores.html">Autores</a></li>
+        <li data-sin-sesion><a href="pages/login.html">Iniciar sesión</a></li>
+        <li data-sin-sesion><a href="pages/registro.html">Crear cuenta</a></li>
+        <li data-con-sesion hidden><a href="pages/perfil.html" id="enlace-perfil">Mi perfil</a></li>
+        <li data-con-sesion hidden>
+          <button type="button" class="boton-enlace" id="boton-salir">Cerrar sesión</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="portada">
+      <div class="contenedor">
+        <h1>Biblioteca del curso</h1>
+        <p class="destacado">
+          Consulte el catálogo, registre libros y administre
+          a los autores desde cualquier computadora.
+        </p>
+        <p id="total-libros" class="estado" role="status"></p>
+        <div class="acciones">
+          <a class="boton" href="pages/libros.html">Ver el catálogo</a>
+          <a class="boton secundario" href="pages/registro.html">
+            Crear una cuenta
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="contenedor">
+      <h2>¿Qué puede hacer?</h2>
+      <ul class="caracteristicas">
+        <li class="tarjeta">
+          <h3>Consultar</h3>
+          <p>Vea todos los libros y fíltrelos por género.</p>
+        </li>
+        <li class="tarjeta">
+          <h3>Registrar</h3>
+          <p>Con una cuenta, agregue, edite o elimine libros.</p>
+        </li>
+        <li class="tarjeta">
+          <h3>Administrar autores</h3>
+          <p>Mantenga la lista de autores y sus datos.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Biblioteca · Proyecto del curso Capstone</p>
+  </footer>
+</body>
+</html>

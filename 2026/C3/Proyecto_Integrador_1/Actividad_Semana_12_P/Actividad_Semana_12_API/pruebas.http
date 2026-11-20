@@ -1,0 +1,87 @@
+# pruebas.http: peticiones de prueba para la extensión REST Client.
+# Coloque el cursor dentro de una petición y presione Ctrl + Alt + R.
+
+@api = http://localhost:4000/api
+
+### 1. Ruta de prueba
+GET {{api}}
+
+### 2. Listar todos los libros
+GET {{api}}/libros
+
+### 3. Filtrar por género
+GET {{api}}/libros?genero=Novela
+
+### 4. Obtener un libro por su id
+GET {{api}}/libros/1
+
+### 5. Registrar un libro
+POST {{api}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "El principito",
+  "autor": "Antoine de Saint-Exupéry",
+  "codigo": "BIB-004",
+  "anio": 1943,
+  "genero": "Infantil",
+  "disponible": true
+}
+
+### 6. Registrar sin título: debe responder 400
+POST {{api}}/libros
+Content-Type: application/json
+
+{
+  "autor": "Anónimo",
+  "codigo": "BIB-099",
+  "anio": 2000,
+  "genero": "Novela"
+}
+
+### 7. Registrar con un código repetido: debe responder 409
+POST {{api}}/libros
+Content-Type: application/json
+
+{
+  "titulo": "Otro libro",
+  "autor": "Anónimo",
+  "codigo": "BIB-001",
+  "anio": 2000,
+  "genero": "Novela"
+}
+
+### 8. Actualizar el libro 2
+PUT {{api}}/libros/2
+Content-Type: application/json
+
+{
+  "titulo": "Única mirando al mar",
+  "autor": "Fernando Contreras Castro",
+  "codigo": "BIB-002",
+  "anio": 1993,
+  "genero": "Novela",
+  "disponible": false
+}
+
+### 9. Eliminar el libro 3
+DELETE {{api}}/libros/3
+
+### 10. Un libro que no existe: debe responder 404
+GET {{api}}/libros/999
+
+### 11. Una ruta que no existe: debe responder 404
+GET {{api}}/prestamos
+
+### 12. Listar los autores
+GET {{api}}/autores
+
+### 13. Registrar un autor
+POST {{api}}/autores
+Content-Type: application/json
+
+{
+  "nombre": "Antoine de Saint-Exupéry",
+  "nacionalidad": "Francés",
+  "biografia": "Escritor y aviador."
+}

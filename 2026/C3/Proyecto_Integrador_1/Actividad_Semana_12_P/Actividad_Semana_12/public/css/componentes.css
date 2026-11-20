@@ -1,0 +1,202 @@
+/* componentes.css: piezas que se repiten en varias páginas */
+
+/* 1. Botones: también para enlaces con la clase boton */
+button,
+.boton {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid var(--principal);
+  border-radius: 6px;
+  background: var(--principal);
+  color: var(--blanco);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+button:hover,
+.boton:hover {
+  background: var(--principal-oscuro);
+}
+
+button.secundario,
+.boton.secundario {
+  background: var(--blanco);
+  color: var(--principal);
+}
+
+button.peligro {
+  border-color: var(--peligro);
+  background: var(--blanco);
+  color: var(--peligro);
+}
+
+button.secundario:hover,
+.boton.secundario:hover,
+button.peligro:hover {
+  background: var(--fondo);
+}
+
+/* Botón que se ve como un enlace, usado en el menú */
+.boton-enlace {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--blanco);
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+.boton-enlace:hover {
+  background: none;
+}
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* 2. Formularios */
+.formulario {
+  padding: 24px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--blanco);
+}
+
+label {
+  display: block;
+  margin: 12px 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.formulario label:first-child {
+  margin-top: 0;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  color: var(--tinta);
+  font: inherit;
+}
+
+.casilla {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.casilla input {
+  width: auto;
+}
+
+.formulario > button {
+  width: 100%;
+  margin-top: 18px;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.filtros label {
+  margin: 0;
+}
+
+.filtros select {
+  width: auto;
+  min-width: 180px;
+}
+
+/* 3. Tarjetas */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 18px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: var(--blanco);
+}
+
+.tarjeta p {
+  margin: 0;
+  color: var(--suave);
+}
+
+.tarjeta .acciones {
+  margin-top: auto;
+  padding-top: 12px;
+}
+
+.etiqueta {
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: var(--principal-claro);
+  color: var(--principal-oscuro);
+  font-size: 14px;
+}
+
+.etiqueta.prestado {
+  background: var(--peligro-claro);
+  color: var(--peligro);
+}
+
+/* 4. Textos de estado y mensajes */
+.destacado {
+  margin: 0 0 24px;
+  color: var(--suave);
+  font-size: 18px;
+}
+
+.estado {
+  color: var(--suave);
+}
+
+.mensaje {
+  min-height: 24px;
+  margin: 12px 0 0;
+  font-weight: 700;
+}
+
+.mensaje.exito { color: var(--principal); }
+.mensaje.error { color: var(--peligro); }
+
+/* 6. Tabla de la lista */
+.contenedor-tabla {
+  overflow-x: auto;
+}
+ 
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--blanco);
+}
+ 
+.tabla th,
+.tabla td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--borde);
+  text-align: left;
+  vertical-align: middle;
+}
+ 
+.tabla th {
+  background: var(--principal-claro);
+  color: var(--principal-oscuro);
+}
